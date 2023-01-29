@@ -600,10 +600,10 @@ footer{
     }
     .hero-section-sub-heading{
         font-size: 2em;
+       /* width: 95vw; */
         height: 100px;
     }
     .hero-section-description{
-        margin-top: 10px;
         text-align: justify;
     }
     .hero-section-right{
