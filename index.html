@@ -255,29 +255,29 @@
             </h3>
 
             <div class="contactus-form-container">
-                <form class="form" action="">
+                <form class="form" action="javascript:sendMail()"  method="post">
                     <div class="form-fields-container">
                         <input 
                             class="formfield"
                             type="text" 
                             name="name" 
-                            id=""
+                            id="fName"
                             placeholder="Enter Your Name"/>
                         <input 
                             class="formfield"
                             type="email"
                             name="email" 
-                            id=""
+                            id="emailid"
                             placeholder="Enter Your Email Address"/>
                         <input 
                             class="formfield"
                             type="text"
                             name="subject" 
-                            id=""
+                            id="subj"
                             placeholder="Enter Your Subject"/>
                         <textarea 
                             name="message" 
-                            id="" 
+                            id="mess" 
                             cols="30" 
                             rows="10" 
                             class="formfield formfield-textarea"
@@ -326,6 +326,7 @@
 </div>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://kit.fontawesome.com/58a810656e.js" crossorigin="anonymous"></script>
+    </script>
     <script>
       var typeData = new Typed(".role", {
         strings: [
@@ -340,6 +341,43 @@
         backSpeed: 80,
         backDelay: 1000,
       });
+    </script>
+   
+
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+    <script>
+      function sendMail(){
+         let fName = document.getElementById('fName').value;
+         let mail = document.getElementById('emailid').value;
+         let subjec = document.getElementById('subj').value;
+         let messag = document.getElementById('mess').value;
+
+         let fmessage = `Name: ${fName}
+                         Mail Id: ${mail}
+                         Subject: ${subjec}
+                         Message: ${messag}`
+
+          Email.send({
+              SecureToken : "e76d3138-05cc-4ffc-a89f-158efebfceb5",
+              To : 'vaibhavshakyabharthana@gmail.com',
+              From : "vaibhavshakyabharthana@gmail.com",
+              Subject : "New Contact Message",
+              Body : fmessage
+}).then(
+  message => {
+    if(message == 'OK'){
+        alert('Your Message has been send Successfully');
+    }
+    else{
+        console.error(message);
+        alert('Some technical Problem occur');
+    }
+  }
+);
+
+      }
     </script>
 </body>
 </html>
